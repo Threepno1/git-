@@ -1,0 +1,11 @@
+eclipse.preferences.version=1
+encoding//src/com/travelsky/et/web/cwip/BaseWsRequest.java=UTF-8
+encoding//src/com/travelsky/et/web/cwip/BaseWsResponse.java=UTF-8
+encoding//src/com/travelsky/et/web/cwip/CWIPRequest.java=UTF-8
+encoding//src/com/travelsky/et/web/cwip/CWIPResponse.java=UTF-8
+encoding//src/com/travelsky/et/web/cwip/CWIPService.java=UTF-8
+encoding//src/com/travelsky/et/web/cwip/CWIPServiceService.java=UTF-8
+encoding//src/com/travelsky/et/web/cwip/CWIPServiceServiceLocator.java=UTF-8
+encoding//src/com/travelsky/et/web/cwip/CWIPServiceSoapBindingStub.java=UTF-8
+encoding//src/webserviceTest/ApacheLogAnalyzer.java=UTF-8
+encoding//src/webserviceTest/FlightSearchControlLogAnalyzer.java=UTF-8

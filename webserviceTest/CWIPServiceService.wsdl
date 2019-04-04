@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://cwip.web.et.travelsky.com" xmlns:impl="http://cwip.web.et.travelsky.com" xmlns:intf="http://cwip.web.et.travelsky.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsi="http://ws-i.org/profiles/basic/1.1/xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <schema targetNamespace="http://cwip.web.et.travelsky.com" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:impl="http://cwip.web.et.travelsky.com" xmlns:intf="http://cwip.web.et.travelsky.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <complexType name="CWIPRequest">
+    <complexContent>
+     <extension base="impl:BaseWsRequest">
+      <sequence>
+       <element name="airline" nillable="true" type="xsd:string"/>
+       <element name="requestXML" nillable="true" type="xsd:string"/>
+       <element name="serviceType" nillable="true" type="xsd:string"/>
+       <element name="userId" nillable="true" type="xsd:string"/>
+       <element name="userType" nillable="true" type="xsd:string"/>
+       <element name="version" nillable="true" type="xsd:string"/>
+       <element name="appUserId" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="BaseWsRequest">
+    <sequence/>
+   </complexType>
+   <element name="handlerResponse">
+    <complexType>
+     <sequence>
+      <element name="handlerReturn" nillable="true" type="impl:CWIPResponse"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="handler">
+    <complexType>
+     <sequence>
+      <element name="rq" nillable="true" type="impl:CWIPRequest"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="CWIPResponse">
+    <complexContent>
+     <extension base="impl:BaseWsResponse">
+      <sequence>
+       <element name="errorDesc" nillable="true" type="xsd:string"/>
+       <element name="responseXML" nillable="true" type="xsd:string"/>
+       <element name="serviceType" nillable="true" type="xsd:string"/>
+       <element name="resultCode" type="xsd:int"/>
+       <element name="version" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="BaseWsResponse">
+    <sequence/>
+   </complexType>
+  </schema>
+  </wsdl:types>
+  <wsdl:message name="handlerRequest">
+    <wsdl:part element="impl:handler" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="handlerResponse">
+    <wsdl:part element="impl:handlerResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="CWIPService">
+    <wsdl:operation name="handler">
+      <wsdl:input message="impl:handlerRequest" name="handlerRequest"/>
+      <wsdl:output message="impl:handlerResponse" name="handlerResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CWIPServiceSoapBinding" type="impl:CWIPService">
+    <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="handler">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="handlerRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="handlerResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CWIPServiceService">
+    <wsdl:port binding="impl:CWIPServiceSoapBinding" name="CWIPService">
+      <wsdlsoap:address location="http://202.106.139.5:80/etcwip/services/CWIPService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
